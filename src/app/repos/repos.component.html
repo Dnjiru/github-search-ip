@@ -15,7 +15,7 @@
         </div>
 
         <!-- Repository Section -->
-        <div class="col-md-6" *ngFor="let repo pf repos['items'">
+        <div class="col-md-6" *ngFor="let repo of repos['items'">
           <div class="cards repocard">
             <div class="card-header">
               <h5 class="card-title inline" appFont > {{repo['name']}} </h5>
@@ -36,7 +36,7 @@
 
       <!-- Load More -->
       <div class="loadMore">
-        <button class="btn btn-outline-info my-2 my-sm-0 loadMore" (click)=loadMore() >Load More</button>
+        <button class="btn btn-outline-info my-2 my-sm-0 loadMore" (click)=loadMore()>Load More</button>
       </div>
 
 

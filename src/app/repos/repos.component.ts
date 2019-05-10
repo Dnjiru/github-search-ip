@@ -12,10 +12,11 @@ export class ReposComponent implements OnInit {
   repos:Repos;
   reponame:string;
   show:number;
+  // getRepoInfo:string;
 
   constructor(private dataService:DataService) {
     this.repos = new Repos ("","","",new Date());
-    this.dataService.getRepoInfo().suscribe(repos => {
+    this.dataService.getRepoInfo().subscribe(repos => {
       console.log(repos);
       this.repos = repos;
     });
@@ -23,7 +24,7 @@ export class ReposComponent implements OnInit {
 
    searchRepo(){
      this.dataService.updateRepos(this.reponame);
-     this.dataService.getRepoInfo().suscribe(repos => {
+     this.dataService.getRepoInfo().subscribe(repos => {
        console.log(repos);
        this.repos = repos;
      });
