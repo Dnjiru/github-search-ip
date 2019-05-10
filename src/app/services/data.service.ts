@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-// import { Http, Headers } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+import { Http, Headers } from '@angular/http';
+// import { HttpClient } from '@angular/common/http';
 import { Users } from '../class/users';
 import { Repos } from '../class/repos';
 import { Observable, Subject } from 'rxjs';
@@ -19,7 +19,7 @@ export class DataService {
   private show:number
  
 
-  constructor(private http:HttpClient) {
+  constructor(private http:Http) {
     console.log('service is ready');
     this.username = 'Dnjiru';
     this.reponame = 'quotes-app';
@@ -29,17 +29,15 @@ export class DataService {
    }
 
    getUsers(){
-    //  return this.http.get(environment.apiUrl+'users/'+ this.username + "?access_token=" + environment.accessToken).pipe(map(res => console.log(res)
-    //  ));
-    return this.http.get("https://api.github.com/users/dnjiru?access_token=d586e3e3b596a2028f2b87ec8cda5a61c1a8e08e")
+     return this.http.get(environment.apiUrl+'users/'+ this.username + "?access_token=" + environment.accessToken).pipe(map(res => res.json()));
    }
 
    getRepos(){
-    return this.http.get(environment.apiUrl+ 'users/' + this.username + "/repos?order=created&sort=asc?access_token=" + environment.accessToken).pipe(map(res => console.log(res)));
+    return this.http.get(environment.apiUrl+ 'users/' + this.username + "/repos?order=created&sort=asc?access_token=" + environment.accessToken).pipe(map(res => res.json()));
   }
 
   getRepoInfo(){
-    return this.http.get( environment.apiUrl + 'search/repositories?q={' + this.reponame +'}&per_page='+this.show+'&sort=forks&order=asc?' + environment.accessToken).pipe(map(res => console.log(res)));
+    return this.http.get( environment.apiUrl + 'search/repositories?q={' + this.reponame +'}&per_page='+this.show+'&sort=forks&order=asc?' + environment.accessToken).pipe(map(res => res.json()));
   }
 
   updateUsers(username:string){
