@@ -29,15 +29,17 @@ export class DataService {
    }
 
    getUsers(){
-     return this.http.get(environment.apiUrl+'users/'+ this.username + "?access_token=" + environment.accessToken).pipe(map(res => res.json()));
+    //  return this.http.get(environment.apiUrl+'users/'+ this.username + "?access_token=" + environment.accessToken).pipe(map(res => console.log(res)
+    //  ));
+    return this.http.get("https://api.github.com/users/dnjiru?access_token=d586e3e3b596a2028f2b87ec8cda5a61c1a8e08e")
    }
 
    getRepos(){
-    return this.http.get(environment.apiUrl+ 'users/' + this.username + "/repos?order=created&sort=asc?access_token=" + environment.accessToken).pipe(map(res => res.json()));
+    return this.http.get(environment.apiUrl+ 'users/' + this.username + "/repos?order=created&sort=asc?access_token=" + environment.accessToken).pipe(map(res => console.log(res)));
   }
 
   getRepoInfo(){
-    return this.http.get( environment.apiUrl + 'search/repositories?q={' + this.reponame +'}&per_page='+this.show+'&sort=forks&order=asc?' + environment.accessToken).pipe(map(res => res.json()));
+    return this.http.get( environment.apiUrl + 'search/repositories?q={' + this.reponame +'}&per_page='+this.show+'&sort=forks&order=asc?' + environment.accessToken).pipe(map(res => console.log(res)));
   }
 
   updateUsers(username:string){
